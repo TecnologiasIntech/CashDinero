@@ -150,44 +150,87 @@ namespace CashDinero
             return count;
         }
 
-        private void updateData()
+        private void updateData(string table, List<String> columnsArray, List<String> valuesArray, List<valuesWhere> valuesCondictionsArray)
         {
+            string columns = "";
+            string condictions = "";
 
-        }
-
-        /*
-         
-            string select = "SELECT COUNT(fecha) FROM FECHA WHERE fecha= '" + fecha + "'";
-            OleDbCommand cmd = new OleDbCommand(select, conexion);
-            try
+            //Añadimos las columnas que queremos consultar
+            for (int i = 0; i < columnsArray.Count(); i++)
             {
-                string compro = (cmd.ExecuteScalar()).ToString();
+                columns += "@" + columnsArray[i] + "= " + columnsArray[i] + ", ";
+            }
 
-                if (Convert.ToInt32(compro) != 0)
+            //Guardamos las condiciones que tendrá la consulta
+            for (int i = 0; i < valuesCondictionsArray.Count(); i++)
+            {
+                if (i == 0)
                 {
-                    DialogResult resultado = MessageBox.Show("Ya existe un historial del dia de hoy\n\n      Desea continuar el dia de hoy?", "ADVERTENCIA", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (resultado == DialogResult.Yes)
-                    {
-                        Pantalla2 form = new Pantalla2(fecha, ds, band, operador);
-                        form.Show();
-                        this.Close();
-                    }
-                   
+                    condictions += "WHERE ";
+                }
+                if (valuesCondictionsArray[i].typeString)
+                {
+                    condictions += valuesCondictionsArray[i] + "= '" + valuesCondictionsArray[i].value + "' " + valuesCondictionsArray[i].operationBool;
                 }
                 else
                 {
-                    string insertar = "INSERT INTO FECHA (fecha, id) VALUES (@fecha, @id)";
-                    OleDbCommand cmd1 = new OleDbCommand(insertar, conexion);
-                    cmd1.Parameters.AddWithValue("@fecha", fecha);
-                    cmd1.Parameters.AddWithValue("@id", fechanum);
-
-                    cmd1.ExecuteNonQuery();
-                    
-                    Pantalla2 form = new Pantalla2(fecha, ds, band, operador);
-                    form.Show();
-                    this.Close();
+                    condictions += valuesCondictionsArray[i] + "= " + valuesCondictionsArray[i].value + " " + valuesCondictionsArray[i].operationBool;
                 }
             }
-         */
+
+
+            var conection = openConection();
+
+            //Creamos el query para actualizar
+            string query = "UPDATE " + table + "SET " + columns + " " + condictions;
+
+            var update = createCommand(query, conection);
+
+            //Añadimos todos los valores de las columnas
+            for (int i = 0; i < valuesArray.Count(); i++)
+            {
+                update.Parameters.AddWithValue("@" + columnsArray[i], valuesArray[i]);
+            }
+
+            //Ejecutamos el comando
+            update.ExecuteNonQuery();
+
+            closeConection(conection);
+        }
+
+        private void deleteData(string table, List<valuesWhere> valuesCondictionsArray)
+        {
+
+            string condictions = "";
+
+            //Añadimos las condiciones que tendrá nuestra consulta delete
+            for (int i = 0; i < valuesCondictionsArray.Count(); i++)
+            {
+                if (i == 0)
+                {
+                    condictions += "WHERE ";
+                }
+                if (valuesCondictionsArray[i].typeString)
+                {
+                    condictions += valuesCondictionsArray[i] + "= '" + valuesCondictionsArray[i].value + "' " + valuesCondictionsArray[i].operationBool;
+                }
+                else
+                {
+                    condictions += valuesCondictionsArray[i] + "= " + valuesCondictionsArray[i].value + " " + valuesCondictionsArray[i].operationBool;
+                }
+            }
+
+            var conection = openConection();
+
+            //Cremos el query para borrar
+            string query = "DELETE FROM " + table + condictions;
+
+            var delete = createCommand(query, conection);
+
+            //Ejecutamos el comando
+            delete.ExecuteNonQuery();
+
+            closeConection(conection);
+        }
     }
 }
