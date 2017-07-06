@@ -16,5 +16,20 @@ namespace CashDinero
         {
             InitializeComponent();
         }
+
+        private void usernameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PasswordtextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
