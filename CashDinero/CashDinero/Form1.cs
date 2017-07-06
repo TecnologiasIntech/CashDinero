@@ -31,5 +31,34 @@ namespace CashDinero
         {
 
         }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            panel3.BackColor = ColorTranslator.FromHtml("#066aff");
+            loginButton.BackColor = ColorTranslator.FromHtml("#0069ff");
+            
+            
+           
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, e.ClipRectangle, Color.Gray, ButtonBorderStyle.Solid);
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, e.ClipRectangle, Color.Gray, ButtonBorderStyle.Solid);
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

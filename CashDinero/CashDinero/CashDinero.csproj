@@ -52,6 +52,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlaceHolderTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="valuesWhere.cs" />
@@ -67,6 +70,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -77,9 +81,49 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Roboto.zip" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DrCash-logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clinica-Norte.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\laptop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\465743454.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\herramientas.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\teclado.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\96c0ca2a34390947ae301a7d2d27fdca-icono-de-rat-n-en-gris.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Flat-design.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tol.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pulsos.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pildora.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jeringa.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\jeringa1.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
