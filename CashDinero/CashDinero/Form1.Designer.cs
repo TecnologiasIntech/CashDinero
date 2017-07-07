@@ -66,6 +66,7 @@
             // 
             // loginButton
             // 
+            this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(105)))), ((int)(((byte)(255)))));
             this.loginButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.loginButton.FlatAppearance.BorderSize = 0;
             this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -77,7 +78,7 @@
             this.loginButton.Size = new System.Drawing.Size(300, 44);
             this.loginButton.TabIndex = 2;
             this.loginButton.Text = "Sign In";
-            this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.UseVisualStyleBackColor = false;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // panel1
@@ -90,9 +91,9 @@
             this.panel1.Controls.Add(this.pictureBox5);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Location = new System.Drawing.Point(1, 2);
+            this.panel1.Location = new System.Drawing.Point(-7, -15);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(393, 646);
+            this.panel1.Size = new System.Drawing.Size(401, 663);
             this.panel1.TabIndex = 4;
             // 
             // panel3
@@ -103,9 +104,9 @@
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Location = new System.Drawing.Point(-10, -10);
+            this.panel3.Location = new System.Drawing.Point(-5, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(403, 373);
+            this.panel3.Size = new System.Drawing.Size(403, 363);
             this.panel3.TabIndex = 0;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 

@@ -34,8 +34,7 @@ namespace CashDinero
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            panel3.BackColor = ColorTranslator.FromHtml("#066aff");
-            loginButton.BackColor = ColorTranslator.FromHtml("#0069ff");
+            
             
             
            
