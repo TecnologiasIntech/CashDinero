@@ -29,7 +29,8 @@ namespace CashDinero
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
