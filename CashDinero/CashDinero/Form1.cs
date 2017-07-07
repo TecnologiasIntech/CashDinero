@@ -29,8 +29,22 @@ namespace CashDinero
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+            /* MainWindow mainWindow = new MainWindow();
+             mainWindow.Show();*/
+            sqlQueryService consulta = new sqlQueryService();
+
+            List<string> columnas = new List<string>();
+            columnas.Add("usr_Username");
+
+            List<string> columnasDeCondiciones = new List<string>();
+            columnasDeCondiciones.Add("usr_Username");
+            columnasDeCondiciones.Add("usr_Password");
+
+            List<valuesWhere> valoresDeCondiciones = new List<valuesWhere>();
+
+
+            consulta.selectData("users", columnas, columnasDeCondiciones,  );
+
         }
 
         private void LoginForm_Load(object sender, EventArgs e)

@@ -28,7 +28,7 @@ namespace CashDinero
             return command;
         }
 
-        private void insertData(string table, List<String> columnsArray, List<String> valuesArray)
+        public void insertData(string table, List<String> columnsArray, List<String> valuesArray)
         { 
             string columns = "";
             string values = "";
@@ -63,7 +63,7 @@ namespace CashDinero
 
         }
 
-        private DataTable selectData(string table, List<String> columnsArray, List<String> columnsOfCondictions, List<valuesWhere> valuesOfCondictions)
+        public DataTable selectData(string table, List<String> columnsArray, List<String> columnsOfCondictions, List<valuesWhere> valuesOfCondictions)
         {
             string columns = "";
             string condictions = "";
@@ -113,7 +113,7 @@ namespace CashDinero
             return selectInformation;
         }
 
-        private int selectCountData(string table, string column, List<valuesWhere> valuesCondictionsArray)
+        public int selectCountData(string table, string column, List<valuesWhere> valuesCondictionsArray)
         {
             int count = 0;
             string condictions = "";
@@ -150,7 +150,7 @@ namespace CashDinero
             return count;
         }
 
-        private void updateData(string table, List<String> columnsArray, List<String> valuesArray, List<valuesWhere> valuesCondictionsArray)
+        public void updateData(string table, List<String> columnsArray, List<String> valuesArray, List<valuesWhere> valuesCondictionsArray)
         {
             string columns = "";
             string condictions = "";
@@ -198,7 +198,7 @@ namespace CashDinero
             closeConection(conection);
         }
 
-        private void deleteData(string table, List<valuesWhere> valuesCondictionsArray)
+        public void deleteData(string table, List<valuesWhere> valuesCondictionsArray)
         {
 
             string condictions = "";
