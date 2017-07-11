@@ -8,8 +8,9 @@ namespace CashDinero
 {
     class valuesWhere
     {
+        public string column;
         public string value;
-        public bool typeString;
+        public bool isTypeString;
         public string operationBool;
     }
 }

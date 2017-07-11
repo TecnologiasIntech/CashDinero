@@ -29,21 +29,28 @@ namespace CashDinero
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            /* MainWindow mainWindow = new MainWindow();
-             mainWindow.Show();*/
-            sqlQueryService consulta = new sqlQueryService();
+            sqlQueryService querys = new sqlQueryService();
 
             List<string> columnas = new List<string>();
             columnas.Add("usr_Username");
 
-            List<string> columnasDeCondiciones = new List<string>();
-            columnasDeCondiciones.Add("usr_Username");
-            columnasDeCondiciones.Add("usr_Password");
+            var listValuesTerms = new List<valuesWhere>();
+            listValuesTerms.Add(querys.createListValuesWhere(true, "usr_Username", usernameTextBox.Text, "AND"));
+            listValuesTerms.Add(querys.createListValuesWhere(true, "usr_Password", PasswordtextBox.Text, ""));
 
-            List<valuesWhere> valoresDeCondiciones = new List<valuesWhere>();
+            DataTable dataTable = querys.selectData(columnas, "users", listValuesTerms);
 
 
-            consulta.selectData("users", columnas, columnasDeCondiciones,  );
+            if (dataTable.Rows.Count == 0)
+            {
+                MessageBox.Show("El usuario no existe o la contraseña está mal escrita");
+            }
+            else
+            {
+                MessageBox.Show("Correcto!");
+                /*MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();*/
+            }
 
         }
 

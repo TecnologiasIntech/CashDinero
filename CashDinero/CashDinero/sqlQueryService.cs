@@ -63,10 +63,11 @@ namespace CashDinero
 
         }
 
-        public DataTable selectData(string table, List<String> columnsArray, List<String> columnsOfCondictions, List<valuesWhere> valuesOfCondictions)
+        //SELECT column, column FROM table WHERE column = value;
+        public DataTable selectData(List<String> columnsArray, string table,  List<valuesWhere> valuesOfTerms)
         {
             string columns = "";
-            string condictions = "";
+            string terms = "";
 
             //Añadimos todas las columnas que queremos consultar
             for (int i = 0; i < columnsArray.Count(); i++)
@@ -75,24 +76,24 @@ namespace CashDinero
             }
 
             //En el caso de tener condiciones las guardamos para despues agregarla a la consulta
-            for (int i = 0; i < columnsOfCondictions.Count(); i++)
+            for (int i = 0; i < valuesOfTerms.Count(); i++)
             {
-                if (i == 0)
+                if (i == 0)     
                 {
-                    condictions += "WHERE ";
+                    terms += " WHERE ";
                 }
-                if(valuesOfCondictions[i].typeString)
+                if(valuesOfTerms[i].isTypeString)
                 {
-                    condictions += columnsOfCondictions[i] + "= '" + valuesOfCondictions[i].value + "' " + valuesOfCondictions[i].operationBool;
+                    terms += valuesOfTerms[i].column + "= '" + valuesOfTerms[i].value + "' " + valuesOfTerms[i].operationBool + " ";
                 }
                 else
                 {
-                    condictions += columnsOfCondictions[i] + "= " + valuesOfCondictions[i].value + " " + valuesOfCondictions[i].operationBool;
+                    terms += valuesOfTerms[i].column + "= " + valuesOfTerms[i].value + " " + valuesOfTerms[i].operationBool + " ";
                 }
             }
 
             //Creamos la consulta
-            string query = "SELECT " + columns + "FROM " + table + condictions;
+            string query = "SELECT " + columns + "FROM " + table + terms;
 
             //Abrimos una conexion
             var conection = openConection();
@@ -113,25 +114,26 @@ namespace CashDinero
             return selectInformation;
         }
 
-        public int selectCountData(string table, string column, List<valuesWhere> valuesCondictionsArray)
+        //SELECT COUNT(column) FROM table WHERE column = value;
+        public int selectCountData(string column, string table, List<valuesWhere> valuesTermsArray)
         {
             int count = 0;
             string condictions = "";
 
             //En el caso de tener condiciones las guardamos para despues agregarla a la consulta
-            for (int i = 0; i < valuesCondictionsArray.Count(); i++)
+            for (int i = 0; i < valuesTermsArray.Count(); i++)
             {
                 if (i == 0)
                 {
-                    condictions += "WHERE ";
+                    condictions += " WHERE ";
                 }
-                if (valuesCondictionsArray[i].typeString)
+                if (valuesTermsArray[i].isTypeString)
                 {
-                    condictions += valuesCondictionsArray[i] + "= '" + valuesCondictionsArray[i].value + "' " + valuesCondictionsArray[i].operationBool;
+                    condictions += valuesTermsArray[i].column + "= '" + valuesTermsArray[i].value + "' " + valuesTermsArray[i].operationBool + " ";
                 }
                 else
                 {
-                    condictions += valuesCondictionsArray[i] + "= " + valuesCondictionsArray[i].value + " " + valuesCondictionsArray[i].operationBool;
+                    condictions += valuesTermsArray[i].column + "= " + valuesTermsArray[i].value + " " + valuesTermsArray[i].operationBool + " ";
                 }
             }
 
@@ -150,7 +152,8 @@ namespace CashDinero
             return count;
         }
 
-        public void updateData(string table, List<String> columnsArray, List<String> valuesArray, List<valuesWhere> valuesCondictionsArray)
+        //UPDATE table SET column= value, column= value  WHERE column = value 
+        public void updateData(string table, List<String> columnsArray, List<String> valuesArray, List<valuesWhere> valuesTermsArray)
         {
             string columns = "";
             string condictions = "";
@@ -162,19 +165,19 @@ namespace CashDinero
             }
 
             //Guardamos las condiciones que tendrá la consulta
-            for (int i = 0; i < valuesCondictionsArray.Count(); i++)
+            for (int i = 0; i < valuesTermsArray.Count(); i++)
             {
                 if (i == 0)
                 {
-                    condictions += "WHERE ";
+                    condictions += " WHERE ";
                 }
-                if (valuesCondictionsArray[i].typeString)
+                if (valuesTermsArray[i].isTypeString)
                 {
-                    condictions += valuesCondictionsArray[i] + "= '" + valuesCondictionsArray[i].value + "' " + valuesCondictionsArray[i].operationBool;
+                    condictions += valuesTermsArray[i].column + "= '" + valuesTermsArray[i].value + "' " + valuesTermsArray[i].operationBool + " ";
                 }
                 else
                 {
-                    condictions += valuesCondictionsArray[i] + "= " + valuesCondictionsArray[i].value + " " + valuesCondictionsArray[i].operationBool;
+                    condictions += valuesTermsArray[i].column + "= " + valuesTermsArray[i].value + " " + valuesTermsArray[i].operationBool + " ";
                 }
             }
 
@@ -198,32 +201,33 @@ namespace CashDinero
             closeConection(conection);
         }
 
-        public void deleteData(string table, List<valuesWhere> valuesCondictionsArray)
+        //DELETE table WHERE column = value
+        public void deleteData(string table, List<valuesWhere> valuesTermsArray)
         {
 
-            string condictions = "";
+            string terms = "";
 
             //Añadimos las condiciones que tendrá nuestra consulta delete
-            for (int i = 0; i < valuesCondictionsArray.Count(); i++)
+            for (int i = 0; i < valuesTermsArray.Count(); i++)
             {
                 if (i == 0)
                 {
-                    condictions += "WHERE ";
+                    terms += " WHERE ";
                 }
-                if (valuesCondictionsArray[i].typeString)
+                if (valuesTermsArray[i].isTypeString)
                 {
-                    condictions += valuesCondictionsArray[i] + "= '" + valuesCondictionsArray[i].value + "' " + valuesCondictionsArray[i].operationBool;
+                    terms += valuesTermsArray[i].column + "= '" + valuesTermsArray[i].value + "' " + valuesTermsArray[i].operationBool + " ";
                 }
                 else
                 {
-                    condictions += valuesCondictionsArray[i] + "= " + valuesCondictionsArray[i].value + " " + valuesCondictionsArray[i].operationBool;
+                    terms += valuesTermsArray[i].column + "= " + valuesTermsArray[i].value + " " + valuesTermsArray[i].operationBool + " ";
                 }
             }
 
             var conection = openConection();
 
             //Cremos el query para borrar
-            string query = "DELETE FROM " + table + condictions;
+            string query = "DELETE FROM " + table + terms;
 
             var delete = createCommand(query, conection);
 
@@ -231,6 +235,17 @@ namespace CashDinero
             delete.ExecuteNonQuery();
 
             closeConection(conection);
+        }
+
+        public valuesWhere createListValuesWhere(bool isTypeString, string column, string value, string operationBool)
+        {
+            var items = new valuesWhere();
+            items.isTypeString = isTypeString;
+            items.column = column;
+            items.value = value;
+            items.operationBool = operationBool;
+
+            return items;
         }
     }
 }
